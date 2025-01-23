@@ -1,0 +1,14 @@
+[
+  {
+    "month": "Feb 2024",
+    "existingAUM": 3000,
+    "newAUM": 500,
+    "portfolioGrowth": 100
+  },
+  {
+    "month": "Mar 2024",
+    "existingAUM": 3100,
+    "newAUM": 550,
+    "portfolioGrowth": 120
+  }
+]

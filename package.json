@@ -1,0 +1,24 @@
+{
+  "name": "neviswealth-challenge",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "client": "parcel client/index.html",
+    "server": "tsx server/index.ts"
+  },
+  "dependencies": {
+    "express": "4.21.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "5.0.0",
+    "@types/react": "19.0.8",
+    "@types/react-dom": "19.0.3",
+    "parcel": "2.13.3",
+    "process": "^0.11.10",
+    "tsx": "4.19.2",
+    "typescript": "5.7.3"
+  }
+}
