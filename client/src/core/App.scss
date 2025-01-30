@@ -1,0 +1,40 @@
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    src: url("../assets/fonts/inter/RegularVF.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: italic;
+    src: url("../assets/fonts/inter/ItalicVF.ttf") format("truetype");
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-variation-settings: 'wght' 320;
+    letter-spacing: 0.01em;
+
+    background-color: rgb(247, 245, 237);
+    color: rgb(20, 20, 19);
+}
+
+h1 {
+    font-variation-settings: 'wght' 350;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.Page {
+    padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    &_card {
+        background: white;
+        border-radius: .5em;
+    }
+}

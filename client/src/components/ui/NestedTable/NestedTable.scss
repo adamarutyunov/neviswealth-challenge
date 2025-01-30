@@ -1,0 +1,66 @@
+.NestedTableRow {
+    cursor: default;
+    user-select: none;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid rgba(20, 20, 19, 0.08);
+    }
+
+    &_content {
+        display: grid;
+        align-items: center;
+        height: 4em;
+        padding: 0 2em 0 1.5em;
+
+        // TODO: REMOVE HARD SETTING
+        grid-template-columns: 19% repeat(12, 1fr);
+    }
+
+    &_control {
+        flex: 0.7em 0 0;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &_header {
+        display: flex;
+        align-items: center;
+        gap: .8em;
+
+        .NestedTableRow_control {
+            transition: transform .2s;
+            transform: rotate(-90deg);
+        }
+    }
+
+    &_labels {
+        text-align: right;
+        font-variation-settings: 'wght' 320;
+        color: rgba(20, 20, 19, 0.6);
+    }
+
+    &_value {
+        text-align: right;
+        letter-spacing: 0.04em;
+    }
+
+    &.expanded {
+        .NestedTableRow_control {
+            transform: rotate(0deg);
+        }
+    }
+
+    &.expandable {
+        cursor: pointer;
+
+        .NestedTableRow_content {
+            transition: background-color .2s;
+
+            &:hover {
+                background-color: rgba(20, 20, 19, 0.04);
+            }
+        }
+    }
+}

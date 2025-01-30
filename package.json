@@ -8,11 +8,15 @@
     "server": "tsx server/index.ts"
   },
   "dependencies": {
+    "clsx": "2.1.1",
+    "cors": "2.8.5",
     "express": "4.21.2",
     "react": "19.0.0",
+    "react-animate-height": "3.2.3",
     "react-dom": "19.0.0"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "2.13.3",
     "@types/express": "5.0.0",
     "@types/react": "19.0.8",
     "@types/react-dom": "19.0.3",

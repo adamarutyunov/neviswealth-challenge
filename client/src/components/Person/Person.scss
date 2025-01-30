@@ -1,0 +1,12 @@
+.Person {
+    display: flex;
+    align-items: center;
+    gap: .4em;
+
+    .Avatar {
+        width: 1.4em;
+        margin-bottom: .07em;
+        aspect-ratio: 1;
+        border-radius: 50%;
+    }
+}
