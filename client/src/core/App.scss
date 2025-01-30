@@ -10,6 +10,10 @@
     src: url("../assets/fonts/inter/ItalicVF.ttf") format("truetype");
 }
 
+:root {
+    --border-radius: .5rem;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     font-size: 14px;
@@ -31,10 +35,10 @@ h1 {
 
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 1.5em;
 
     &_card {
         background: white;
-        border-radius: .5em;
+        border-radius: var(--border-radius);
     }
 }

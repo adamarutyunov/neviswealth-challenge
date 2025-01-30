@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 
 import DashboardTable from "../../components/DashboardTable/DashboardTable";
+import DashboardGraph from '../../components/DashboardGraph/DashboardGraph';
+
 import {Company} from '../../types/data';
 
 const COMPANY_ID = "d6e00056-dce4-4ef4-b034-d6467db6187d"
@@ -32,6 +34,10 @@ export default function IndexPage() {
 	return (
 		<div className="Page">
 			<h1>Clients</h1>
+
+			<div className="Page_card">
+				{company && <DashboardGraph company={company} />}
+			</div>
 
 			<div className="Page_card">
 				{company && <DashboardTable company={company} />}

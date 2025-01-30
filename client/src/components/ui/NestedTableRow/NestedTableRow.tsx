@@ -1,4 +1,4 @@
-import React, {Children, ReactNode, useMemo, useRef, useState} from "react";
+import React, {ReactNode, useMemo, useState} from "react";
 import AnimateHeight from 'react-animate-height';
 
 import clsx from 'clsx';
@@ -35,7 +35,7 @@ export default function NestedTableRow({ children, id, label, values, nestingLev
                 >
                     <div
                         className="NestedTableRow_content"
-                        onClick={() => setExpanded(!expanded)}
+                        onClick={() => isExpandable && setExpanded(!expanded)}
                     >
                         <div
                             className="NestedTableRow_header"
