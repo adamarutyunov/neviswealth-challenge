@@ -5,6 +5,7 @@
     "moduleResolution": "node",
     "lib": ["DOM", "ESNext"],
     "jsx": "react-jsx",
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
   }
 }
