@@ -1,11 +1,12 @@
-import {useMemo} from 'react'
+import React, { useMemo } from 'react'
 
-import {Channel, Company} from '../../types/data';
-import {StackedBarChart} from '../ui/StackedBarChart/StackedBarChart';
-import {StackedBar} from '../ui/StackedBarChart/types';
+import { StackedBarChart } from '../ui/StackedBarChart/StackedBarChart'
+import { StackedBar } from '../ui/StackedBarChart/types'
+
+import { Channel, Company } from '../../types/data'
 
 interface DashboardGraphProps {
-	company: Company;
+    company: Company;
     labels: string[]
 }
 
@@ -15,8 +16,8 @@ export default function DashboardGraph({ company, labels }: DashboardGraphProps)
     const channels: Channel[] = useMemo(() => {
         return (
             company.branches
-            ?.flatMap(b => b?.employees ?? [])
-            ?.flatMap(e => e?.channels ?? [])
+                ?.flatMap(b => b?.employees ?? [])
+                ?.flatMap(e => e?.channels ?? [])
             ?? []
         )
     }, [company])
@@ -29,13 +30,13 @@ export default function DashboardGraph({ company, labels }: DashboardGraphProps)
         const output = []
 
         // Creating bars with zero values
-        for (let label of labels) {
+        for (const label of labels) {
             output.push({ label, values: Array(channelsNames.length).fill(0) })
         }
 
         // Adding actual values to corresponding bars
-        for (let channel of channels) {
-            let keyIndex = channelsNames.indexOf(channel.name)
+        for (const channel of channels) {
+            const keyIndex = channelsNames.indexOf(channel.name)
 
             for (let i = 0; i < channel.values.length; i++) {
                 output[i].values[keyIndex] += channel.values[i]

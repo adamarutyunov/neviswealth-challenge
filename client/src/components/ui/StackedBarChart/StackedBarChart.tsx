@@ -1,10 +1,9 @@
-import {useCallback, useMemo} from 'react'
+import React, { useCallback, useMemo } from 'react'
 
-import {ceilToNextRound, steps} from '../../../utils/math';
+import { StackedGraphData } from './types'
+import { ceilToNextRound, steps } from '../../../utils/math'
 
-import {StackedGraphData} from './types';
-
-import './StackedBarChart.scss';
+import './StackedBarChart.scss'
 
 const COLOR_PALETTE = ['#B29DF8', '#F4BEB4', '#A75E6E']
 
@@ -12,18 +11,18 @@ export function StackedBarChart({ dataKeys, data }: StackedGraphData) {
     // Calculating maximum bar value to choose correct axis scale
     const maxBarValue: number = useMemo(() => {
         // Calculating maximum of sums of each bar's values
-        return Math.max(...data.map(d => d.values.reduce((a, b) => a + b, 0)));
-    }, [data]);
+        return Math.max(...data.map(d => d.values.reduce((a, b) => a + b, 0)))
+    }, [data])
 
     // Ceiling max value to get nice axis steps
-    const maxGraphValue: number = useMemo(() => ceilToNextRound(maxBarValue), [maxBarValue]);
+    const maxGraphValue: number = useMemo(() => ceilToNextRound(maxBarValue), [maxBarValue])
     // Counting axis steps
-    const graphSteps: number[] = useMemo(() => steps(maxGraphValue), [maxGraphValue]);
+    const graphSteps: number[] = useMemo(() => steps(maxGraphValue), [maxGraphValue])
 
     // Function to get relative height based on value
     const getHeight = useCallback((value: number): number => {
-        return value / maxGraphValue;
-    }, [maxGraphValue]);
+        return value / maxGraphValue
+    }, [maxGraphValue])
 
     return (
         <div className="StackedBarChart">
@@ -39,7 +38,7 @@ export function StackedBarChart({ dataKeys, data }: StackedGraphData) {
                 ))}
 
                 <div className="Bars">
-                    {data.map((bar) => (
+                    {data.map(bar => (
                         <div
                             key={bar.label}
                             className="Bar"
@@ -53,7 +52,7 @@ export function StackedBarChart({ dataKeys, data }: StackedGraphData) {
                                             height: `${getHeight(value) * 100}%`,
                                             backgroundColor: COLOR_PALETTE[j],
                                         }}
-                                    />)
+                                    />),
                                 )}
                             </div>
                         </div>

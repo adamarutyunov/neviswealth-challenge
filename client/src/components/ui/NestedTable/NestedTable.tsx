@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import React, { ReactNode } from 'react'
 
 import './NestedTable.scss'
 
@@ -18,7 +18,7 @@ export default function NestedTable({ columnsLabels, children }: NestedTableProp
                     {columnsLabels.map(value =>
                         <span className="NestedTableRow_label" key={value}>
                             {value}
-                        </span>
+                        </span>,
                     )}
                 </div>
 
