@@ -6,6 +6,10 @@
     "lib": ["DOM", "ESNext"],
     "jsx": "react-jsx",
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "src/*": ["./client/src/*"]
+    },
+  },
+  "include": ["./client/src/**/*"]
 }

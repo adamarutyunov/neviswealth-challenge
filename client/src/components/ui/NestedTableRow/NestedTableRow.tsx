@@ -2,7 +2,7 @@ import React, { CSSProperties, ReactNode, useMemo, useState } from 'react'
 import AnimateHeight from 'react-animate-height'
 import clsx from 'clsx'
 
-import ArrowIcon from '../../../assets/icons/arrow.svg'
+import ArrowIcon from 'src/assets/icons/arrow.svg'
 
 interface NestedTableRowProps {
     children?: ReactNode;

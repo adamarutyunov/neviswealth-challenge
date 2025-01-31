@@ -1,0 +1,29 @@
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.Spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &:after {
+        content: '';
+        display: block;
+
+        width: 1.5em;
+        aspect-ratio: 1;
+
+        transform-origin: center;
+        animation: 1s linear infinite spinner;
+
+        background-image: url('~client/src/assets/icons/loader-dark.svg') ;
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+
+    }
+}

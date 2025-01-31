@@ -1,8 +1,8 @@
 import React from 'react'
 
-import NestedTable from '../ui/NestedTable/NestedTable'
-import NestedTableRow from '../ui/NestedTableRow/NestedTableRow'
-import Person from '../Person/Person'
+import NestedTable from 'src/components/ui/NestedTable/NestedTable'
+import NestedTableRow from 'src/components/ui/NestedTableRow/NestedTableRow'
+import Person from 'src/components/Person/Person'
 
 import { Company, Channel, Employee, Branch } from '../../types/data'
 

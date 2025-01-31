@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 
-import { StackedBarChart } from '../ui/StackedBarChart/StackedBarChart'
-import { StackedBar } from '../ui/StackedBarChart/types'
+import { StackedBarChart } from 'src/components/ui/StackedBarChart/StackedBarChart'
+import { StackedBar } from 'src/components/ui/StackedBarChart/types'
 
 import { Channel, Company } from '../../types/data'
 

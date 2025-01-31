@@ -1,13 +1,20 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import AnimateHeight from 'react-animate-height'
 
 import { StackedGraphData } from './types'
-import { ceilToNextRound, steps } from '../../../utils/math'
+import { ceilToNextRound, steps } from 'src/utils/math'
 
 import './StackedBarChart.scss'
 
 const COLOR_PALETTE = ['#B29DF8', '#F4BEB4', '#A75E6E']
 
 export function StackedBarChart({ dataKeys, data }: StackedGraphData) {
+    const [transitionStarted, setTransitionStarted] = useState<boolean>(false)
+
+    useEffect(() => {
+        setTransitionStarted(true)
+    }, [])
+
     // Calculating maximum bar value to choose correct axis scale
     const maxBarValue: number = useMemo(() => {
         // Calculating maximum of sums of each bar's values
@@ -46,14 +53,24 @@ export function StackedBarChart({ dataKeys, data }: StackedGraphData) {
                             <div className="Bar_label">{bar.label}</div>
                             <div className="Bar_values">
                                 {bar.values.map((value, j) => (
-                                    (value > 0) && <div
+                                    (value > 0) &&
+                                    <AnimateHeight
+                                        duration={300}
+                                        height={transitionStarted ? `${getHeight(value) * 100}%` : 0}
+                                        easing='ease-out'
+                                        animateOpacity
                                         className="Bar_value"
-                                        style={{
-                                            height: `${getHeight(value) * 100}%`,
-                                            backgroundColor: COLOR_PALETTE[j],
-                                        }}
-                                    />),
-                                )}
+                                        contentClassName="Bar_value_content"
+                                    >
+                                        <div
+                                            role="presentation"
+                                            style={{
+                                                height: '100%',
+                                                backgroundColor: COLOR_PALETTE[j],
+                                            }}
+                                        ></div>
+                                    </AnimateHeight>
+                                ))}
                             </div>
                         </div>
                     ))}

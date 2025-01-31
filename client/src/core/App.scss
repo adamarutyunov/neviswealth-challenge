@@ -37,10 +37,27 @@ h1 {
 
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
+    gap: 1em;
 
     &_card {
+        position: relative;
+
         background: white;
         border-radius: var(--border-radius);
+
+        display: flex;
+        align-items: center;
+
+        & > * {
+            flex: 1;
+        }
+    }
+
+    .Error {
+        color: #dd000088;
+        font-weight: bold;
+        text-align: center;
+
+        user-select: none;
     }
 }
