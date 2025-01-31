@@ -61,6 +61,7 @@ export function StackedBarChart({ dataKeys, data }: StackedGraphData) {
                                         animateOpacity
                                         className="Bar_value"
                                         contentClassName="Bar_value_content"
+                                        key={`value_${bar.label}_${j}`}
                                     >
                                         <div
                                             role="presentation"

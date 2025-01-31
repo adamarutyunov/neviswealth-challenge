@@ -21,6 +21,7 @@ export default function DashboardTable({ company, labels }: DashboardTableProps)
         return (
             <NestedTableRow
                 id={channel.id}
+                key={channel.id}
                 label={channel.name}
                 values={channel.values}
                 nestingLevel={nestingLevel}
@@ -32,6 +33,7 @@ export default function DashboardTable({ company, labels }: DashboardTableProps)
         return (
             <NestedTableRow
                 id={employee.id}
+                key={employee.id}
                 label={<Person id={employee.id} name={employee.name} />}
                 values={employee.values}
                 nestingLevel={nestingLevel}
@@ -47,6 +49,7 @@ export default function DashboardTable({ company, labels }: DashboardTableProps)
         return (
             <NestedTableRow
                 id={branch.id}
+                key={branch.id}
                 label={branch.name}
                 values={branch.values}
                 nestingLevel={nestingLevel}

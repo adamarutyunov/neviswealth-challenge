@@ -1,24 +1,24 @@
-"use client";
+'use client'
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
 const useWindowWidth = (): number => {
-  const [width, setWidth] = useState<number>(window.innerWidth);
+    const [width, setWidth] = useState<number>(window.innerWidth)
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth)
+        }
 
-    window.addEventListener("resize", handleResize);
+        window.addEventListener('resize', handleResize)
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
 
-  return width;
-};
+    return width
+}
 
-export default useWindowWidth;
+export default useWindowWidth
 

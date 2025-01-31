@@ -83,11 +83,11 @@ export default function IndexPage() {
             </div>
 
             <div className="Page_card_wrapper">
-            <div className="Page_card _scrollable" id="Page_card_table">
-                {loading && <Spinner />}
-                {error && <p className="Error">{error}</p>}
-                {company && <DashboardTable company={company} labels={monthsLabels} />}
-            </div>
+                <div className="Page_card _scrollable" id="Page_card_table">
+                    {loading && <Spinner />}
+                    {error && <p className="Error">{error}</p>}
+                    {company && <DashboardTable company={company} labels={monthsLabels} />}
+                </div>
             </div>
         </div>
     )

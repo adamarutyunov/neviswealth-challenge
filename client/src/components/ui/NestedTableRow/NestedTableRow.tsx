@@ -68,7 +68,7 @@ export default function NestedTableRow({ children, id, label, values, nestingLev
                 animateOpacity
                 onHeightAnimationStart={() => {
                     const el = scrollAnchor.current
-                    if (!el) return;
+                    if (!el) return
 
                     setTimeout(() => {
                         window.scrollTo({
