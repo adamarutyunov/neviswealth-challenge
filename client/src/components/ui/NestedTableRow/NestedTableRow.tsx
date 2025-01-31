@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactNode, useMemo, useState } from 'react'
 import AnimateHeight from 'react-animate-height'
-import clsx from 'clsx'
+import { clsx }  from 'clsx'
 
 import ArrowIcon from 'src/assets/icons/arrow.svg'
 

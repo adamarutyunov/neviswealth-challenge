@@ -30,7 +30,7 @@ export default function IndexPage() {
         await new Promise(resolve => setTimeout(resolve, 200))
 
         try {
-            const response = await fetch(`http://localhost:4000/companies/${COMPANY_ID}`)
+            const response = await fetch(`${process.env.BACKEND_URL}/companies/${COMPANY_ID}`)
             const data = await response.json()
 
             setCompany(data as Company)

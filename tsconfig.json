@@ -11,5 +11,5 @@
       "src/*": ["./client/src/*"]
     },
   },
-  "include": ["./client/src/**/*"]
+  "include": ["./client/src/**/*", "./client/index.d.ts"]
 }

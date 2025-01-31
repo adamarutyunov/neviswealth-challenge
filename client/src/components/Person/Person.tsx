@@ -12,7 +12,7 @@ export default function Person({ id, name }: PersonProps) {
         <div className="Person">
             <img
                 className="Avatar"
-                src={`http://localhost:4000/media/avatars/${id}.webp`}
+                src={`${process.env.BACKEND_URL}/media/avatars/${id}.webp`}
                 aria-hidden
             />
             {name}

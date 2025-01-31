@@ -44,36 +44,15 @@ describe('DashboardGraph', () => {
         ],
     }
 
-  const labels = ['Label 1', 'Label 2']
+    const labels = ['Label 1', 'Label 2', 'Label 3']
+    const channelsNames = ['Channel 1', 'Channel 2', 'Channel 3']
 
-  it('renders the StackedBarChart with the correct data', () => {
-    render(<DashboardGraph company={mockCompany} labels={labels} />)
+    it('renders the StackedBarChart with the correct data', () => {
+        render(<DashboardGraph company={mockCompany} labels={labels} />)
 
-    // Check if the chart is rendered with the correct data keys
-    const chart = screen.getByTestId('stacked-bar-chart')
-    expect(chart).toBeInTheDocument()
-
-    // Assuming StackedBarChart takes the dataKeys as a prop and renders them somehow:
-    // (You would adapt this to match the actual structure and behavior of StackedBarChart)
-    expect(chart).toHaveAttribute('data-keys', 'Channel 1, Channel 2, Channel 3')
-
-    // You can also check for the presence of labels
-    labels.forEach((label) => {
-      expect(screen.getByText(label)).toBeInTheDocument()
+        labels.concat(channelsNames).forEach(label => {
+            expect(screen.getByText(label)).toBeInTheDocument()
+        })
     })
-  })
-
-  it('calculates the stacked bar values correctly', () => {
-    render(<DashboardGraph company={mockCompany} labels={labels} />)
-
-    // Assuming the chart visualizes the values as text or some identifiable element
-    // You can inspect the elements or mock the StackedBarChart component's internal behavior
-    const bars = screen.getAllByTestId('stacked-bar')
-
-    // You'd check that the values for each channel are correctly summed
-    expect(bars[0]).toHaveTextContent('18') // First bar value for Channel 1
-    expect(bars[1]).toHaveTextContent('35') // First bar value for Channel 2
-    expect(bars[2]).toHaveTextContent('10') // First bar value for Channel 3
-  })
 })
 

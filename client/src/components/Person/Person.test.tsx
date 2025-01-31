@@ -15,7 +15,7 @@ describe('Person component', () => {
         render(<Person {...mockProps} />)
 
         const avatar = screen.getByRole('img', { hidden: true })
-        expect(avatar).toHaveAttribute('src', `http://localhost:4000/media/avatars/${mockProps.id}.webp`)
+        expect(avatar).toHaveAttribute('src', expect.stringContaining(`/media/avatars/${mockProps.id}.webp`))
 
         expect(screen.getByText(mockProps.name)).toBeInTheDocument()
     })
