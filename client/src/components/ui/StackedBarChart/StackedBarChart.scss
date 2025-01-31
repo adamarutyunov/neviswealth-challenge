@@ -12,10 +12,14 @@
 
         display: flex;
 
-        --gap: 1.5em;
+        --gap: 1.5vw;
 
         gap: var(--gap);
         padding: 0 var(--gap);
+
+        @media (max-width: 900px) {
+            --gap: .5vw;
+        }
 
         .Bar {
             position: relative;
@@ -23,12 +27,18 @@
 
             &_label {
                 position: absolute;
-                top: calc(100% + 1em);
+                top: calc(100% + 1vw);
                 width: 100%;
 
                 font-size: .85em;
                 color: var(--color-opacity);
                 text-align: center;
+                white-space: nowrap;
+
+                @media (max-width: 500px) {
+                    transform: rotate(90deg);
+                    top: calc(100% + .8em);
+                }
             }
 
             &_values {

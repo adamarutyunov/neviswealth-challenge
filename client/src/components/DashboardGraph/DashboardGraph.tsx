@@ -44,7 +44,7 @@ export default function DashboardGraph({ company, labels }: DashboardGraphProps)
         }
 
         return output
-    }, [channelsNames])
+    }, [channelsNames, labels])
 
     return (
         <StackedBarChart dataKeys={channelsNames} data={data} />

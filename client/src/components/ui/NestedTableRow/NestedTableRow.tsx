@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, useMemo, useState } from 'react'
+import React, { CSSProperties, ReactNode, useMemo, useRef, useState } from 'react'
 import AnimateHeight from 'react-animate-height'
 import { clsx }  from 'clsx'
 
@@ -17,6 +17,7 @@ interface NestedTableRowProps {
 export default function NestedTableRow({ children, id, label, values, nestingLevel = 0 }: NestedTableRowProps) {
     const [expanded, setExpanded] = useState<boolean>(false)
     const expandable = children !== undefined
+    const scrollAnchor = useRef<HTMLDivElement>(null)
 
     const headerStyle: CSSProperties = useMemo(() => {
         return {
@@ -65,9 +66,22 @@ export default function NestedTableRow({ children, id, label, values, nestingLev
                 height={expanded ? 'auto' : 0}
                 easing='ease-out'
                 animateOpacity
+                onHeightAnimationStart={() => {
+                    const el = scrollAnchor.current
+                    if (!el) return;
+
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: Math.max(window.scrollY, el.getBoundingClientRect().bottom + window.scrollY - window.innerHeight),
+                            behavior: 'smooth',
+                        })
+                    }, 300)
+                }}
             >
                 {children}
             </AnimateHeight>
+
+            <div className="NestedTableRow_scroll-anchor" ref={scrollAnchor}></div>
         </>
     )
 }

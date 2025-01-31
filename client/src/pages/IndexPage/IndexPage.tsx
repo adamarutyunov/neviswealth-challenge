@@ -4,8 +4,9 @@ import DashboardTable from 'src/components/DashboardTable/DashboardTable'
 import DashboardGraph from 'src/components/DashboardGraph/DashboardGraph'
 import Spinner from 'src/components/ui/Spinner/Spinner'
 
+import useWindowWidth from 'src/hooks/useWindowWidth'
 import { Company } from 'src/types/data'
-import { createMonths, getMonthLabel } from 'src/utils/date'
+import { createMonths } from 'src/utils/date'
 
 import './IndexPage.scss'
 
@@ -16,12 +17,37 @@ export default function IndexPage() {
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
 
+    const windowWidth = useWindowWidth()
+
     // Implying we are getting these from a date range selector
     const START_DATE: Date = new Date('2024-02-01')
     const MONTHS_COUNT: number = 12
 
     const months: Date[] = useMemo(() => createMonths(START_DATE, MONTHS_COUNT), [START_DATE])
-    const monthsLabels: string[] = useMemo(() => months.map(getMonthLabel), [months])
+
+    const getMonthLabel = useCallback((date: Date) => {
+        if (windowWidth > 900) {
+            return date.toLocaleDateString('en-GB', {
+                month: 'short',
+                year: 'numeric',
+            })
+        }
+
+        if (windowWidth > 630) {
+            return date.toLocaleDateString('en-GB', {
+                month: 'short',
+                year: '2-digit',
+            })
+        }
+
+        return date.toLocaleDateString('en-GB', {
+            month: 'short',
+        })
+    }, [windowWidth])
+
+    const monthsLabels: string[] = useMemo(() => {
+        return months.map(getMonthLabel)
+    }, [months, windowWidth])
 
     const fetchData = useCallback(async () => {
         setLoading(true)
@@ -56,10 +82,12 @@ export default function IndexPage() {
                 {company && <DashboardGraph company={company} labels={monthsLabels} />}
             </div>
 
-            <div className="Page_card" id="Page_card_table">
+            <div className="Page_card_wrapper">
+            <div className="Page_card _scrollable" id="Page_card_table">
                 {loading && <Spinner />}
                 {error && <p className="Error">{error}</p>}
                 {company && <DashboardTable company={company} labels={monthsLabels} />}
+            </div>
             </div>
         </div>
     )
