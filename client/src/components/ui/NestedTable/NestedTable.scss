@@ -13,8 +13,7 @@
 
         transition: background-color .2s;
 
-        // TODO: REMOVE HARD SETTING
-        grid-template-columns: 19% repeat(12, 1fr);
+        grid-template-columns: 19% repeat(var(--table-columns-count), 1fr);
     }
 
     &_control {
