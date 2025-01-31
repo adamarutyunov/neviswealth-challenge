@@ -1,4 +1,4 @@
-import React, {ReactNode, useMemo, useState} from "react";
+import {CSSProperties, ReactNode, useMemo, useState} from "react";
 import AnimateHeight from 'react-animate-height';
 
 import clsx from 'clsx';
@@ -16,10 +16,10 @@ interface NestedTableRowProps {
 }
 
 export default function NestedTableRow({ children, id, label, values, nestingLevel = 0 }: NestedTableRowProps) {
-    const [expanded, setExpanded] = useState(false);
-    const isExpandable = children !== undefined
+    const [expanded, setExpanded] = useState<Boolean>(false);
+    const expandable = children !== undefined
 
-    const headerStyle = useMemo(() => {
+    const headerStyle: CSSProperties = useMemo(() => {
         return {
             paddingLeft: nestingLevel * 1.8 + 'em'
         }
@@ -29,20 +29,22 @@ export default function NestedTableRow({ children, id, label, values, nestingLev
             <>
                 <div
                     className={
-                        clsx("NestedTableRow", {expanded, expandable: isExpandable})
+                        clsx("NestedTableRow", {
+                            _expanded: expanded, _expandable: expandable
+                        })
                     }
                     key={id}
                 >
                     <div
                         className="NestedTableRow_content"
-                        onClick={() => isExpandable && setExpanded(!expanded)}
+                        onClick={() => expandable && setExpanded(!expanded)}
                     >
                         <div
                             className="NestedTableRow_header"
                             style={headerStyle}
                         >
                             <div className="NestedTableRow_control">
-                                {isExpandable && <img src={ArrowIcon} />}
+                                {expandable && <img src={ArrowIcon} />}
                             </div>
 
                             <div className="NestedTableRow_label">{label}</div>
@@ -57,7 +59,6 @@ export default function NestedTableRow({ children, id, label, values, nestingLev
                             </div>
                         )}
                     </div>
-
                 </div>
 
                 <AnimateHeight

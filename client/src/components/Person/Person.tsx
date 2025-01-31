@@ -1,5 +1,3 @@
-import React from 'react'
-
 import './Person.scss'
 
 interface PersonProps {

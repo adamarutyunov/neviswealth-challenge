@@ -1,20 +1,18 @@
-import React, {useMemo} from 'react'
+import {useMemo} from 'react'
 
-import {Company} from '../../types/data';
+import {Channel, Company} from '../../types/data';
 import {StackedBarChart} from '../ui/StackedBarChart/StackedBarChart';
-
-import {createMonths, getMonthLabel} from '../../utils/date';
-
-const START_DATE = new Date('2024-02-01')
-const MONTHS = createMonths(START_DATE, 12)
-const LABELS = MONTHS.map(getMonthLabel)
+import {StackedBar} from '../ui/StackedBarChart/types';
 
 interface DashboardGraphProps {
 	company: Company;
+    labels: string[]
 }
 
-export default function DashboardGraph({ company }: DashboardGraphProps) {
-    const channels = useMemo(() => {
+export default function DashboardGraph({ company, labels }: DashboardGraphProps) {
+    // Dashboard is constructed only from channels,
+    // so we have to extract all of them from the company
+    const channels: Channel[] = useMemo(() => {
         return (
             company.branches
             ?.flatMap(b => b?.employees ?? [])
@@ -23,19 +21,21 @@ export default function DashboardGraph({ company }: DashboardGraphProps) {
         )
     }, [company])
 
-    const dataKeys = useMemo(() => {
+    const channelsNames: string[] = useMemo(() => {
         return Array.from(new Set(channels.map(c => c.name)))
     }, [channels])
 
-    const data = useMemo(() => {
+    const data: StackedBar[] = useMemo(() => {
         const output = []
 
-        for (let i = 0; i < LABELS.length; i++) {
-            output.push({ label: LABELS[i], values: Array(dataKeys.length).fill(0) })
+        // Creating bars with zero values
+        for (let label of labels) {
+            output.push({ label, values: Array(channelsNames.length).fill(0) })
         }
 
+        // Adding actual values to corresponding bars
         for (let channel of channels) {
-            let keyIndex = dataKeys.indexOf(channel.name)
+            let keyIndex = channelsNames.indexOf(channel.name)
 
             for (let i = 0; i < channel.values.length; i++) {
                 output[i].values[keyIndex] += channel.values[i]
@@ -43,9 +43,9 @@ export default function DashboardGraph({ company }: DashboardGraphProps) {
         }
 
         return output
-    }, [dataKeys])
+    }, [channelsNames])
 
     return (
-        <StackedBarChart dataKeys={dataKeys} data={data} />
+        <StackedBarChart dataKeys={channelsNames} data={data} />
     )
 }

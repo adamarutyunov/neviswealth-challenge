@@ -1,21 +1,15 @@
-import React from 'react'
-
 import NestedTable from "../ui/NestedTable/NestedTable";
 import NestedTableRow from "../ui/NestedTableRow/NestedTableRow";
-
-import {createMonths, getMonthLabel} from "../../utils/date";
 
 import { Company, Channel, Employee, Branch } from "../../types/data";
 import Person from '../Person/Person';
 
-const START_DATE = new Date('2024-02-01')
-const MONTHS = createMonths(START_DATE, 12)
-
 interface DashboardTableProps {
 	company: Company;
+	labels: string[]
 }
 
-export default function DashboardTable({ company }: DashboardTableProps) {
+export default function DashboardTable({ company, labels }: DashboardTableProps) {
 	/* renderChannel, renderBranch and renderCompany
 	   could be combined to a single function,
 	   but renderEmployee has different label assembly,
@@ -78,7 +72,7 @@ export default function DashboardTable({ company }: DashboardTableProps) {
 	}
 
 	return (company &&
-		<NestedTable columnsLabels={MONTHS.map(getMonthLabel)}>
+		<NestedTable columnsLabels={labels}>
 			{renderCompany(company)}
 		</NestedTable>
    )

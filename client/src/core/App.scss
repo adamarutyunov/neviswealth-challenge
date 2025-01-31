@@ -12,6 +12,8 @@
 
 :root {
     --border-radius: .5rem;
+    --color: rgba(20, 20, 19);
+    --color-opacity: rgba(20, 20, 19, 0.6);
 }
 
 body {
@@ -21,7 +23,7 @@ body {
     letter-spacing: 0.01em;
 
     background-color: rgb(247, 245, 237);
-    color: rgb(20, 20, 19);
+    color: var(--color);
 }
 
 h1 {

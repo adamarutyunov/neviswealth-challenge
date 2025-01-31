@@ -1,30 +1,27 @@
-import React, {useCallback, useMemo} from 'react'
+import {useCallback, useMemo} from 'react'
 
 import {ceilToNextRound, steps} from '../../../utils/math';
+
+import {StackedGraphData} from './types';
 
 import './StackedBarChart.scss';
 
 const COLOR_PALETTE = ['#B29DF8', '#F4BEB4', '#A75E6E']
 
-interface StackedBar {
-    label: string;
-    values: number[];
-}
-
-export interface GraphData {
-    dataKeys: string[];
-    data: StackedBar[];
-}
-
-export function StackedBarChart({ dataKeys, data }: GraphData) {
-    const maxBarValue = useMemo(() => {
+export function StackedBarChart({ dataKeys, data }: StackedGraphData) {
+    // Calculating maximum bar value to choose correct axis scale
+    const maxBarValue: number = useMemo(() => {
+        // Calculating maximum of sums of each bar's values
         return Math.max(...data.map(d => d.values.reduce((a, b) => a + b, 0)));
     }, [data]);
 
-    const maxGraphValue = useMemo(() => ceilToNextRound(maxBarValue), [maxBarValue]);
-    const graphSteps = useMemo(() => steps(maxGraphValue), [maxGraphValue]);
+    // Ceiling max value to get nice axis steps
+    const maxGraphValue: number = useMemo(() => ceilToNextRound(maxBarValue), [maxBarValue]);
+    // Counting axis steps
+    const graphSteps: number[] = useMemo(() => steps(maxGraphValue), [maxGraphValue]);
 
-    const getHeight = useCallback((value: number) => {
+    // Function to get relative height based on value
+    const getHeight = useCallback((value: number): number => {
         return value / maxGraphValue;
     }, [maxGraphValue]);
 
